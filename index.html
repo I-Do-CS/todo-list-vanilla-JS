@@ -26,32 +26,33 @@
       <!-- App Container -->
       <div class="container flex flex-col pb-32">
         <!-- Input Container -->
-        <div class="flex flex-col text-center">
+        <div class="flex flex-col border-b-2 border-lime-600 text-center">
           <div
             class="flex flex-col items-center justify-center gap-5 pb-4 pt-7 md:flex-row md:gap-6 md:p-12 md:pb-6"
           >
             <input
               type="text"
-              name="todo"
-              id="todo"
+              name="todo-field"
+              id="todo-field"
               placeholder="Buy Groceries, Get Mails, etc."
               class="w-3/4 rounded-lg border-4 border-lime-600 px-4 py-2 text-center text-lg outline-2 outline-orange-400 placeholder:text-sm"
             />
             <button
-              id="todo-btn"
+              id="add-btn"
               class="rounded-lg border-2 border-lime-600 bg-lime-400 px-4 py-[9px] text-sm font-medium duration-75 hover:brightness-105 active:scale-105"
             >
               Add
             </button>
           </div>
 
-          <span class="min-h-6 pb-8 pt-3 text-sm text-lime-800 opacity-85"
-            >&check; New ToDo Added</span
-          >
+          <span
+            id="notifier"
+            class="min-h-10 min-w-3 text-sm text-lime-800 opacity-85"
+          ></span>
         </div>
 
         <!-- ToDos Container -->
-        <div class="flex flex-col px-4">
+        <div class="flex flex-col p-4">
           <!-- Sample Todo -->
           <div class="my-2 flex rounded-xl border-4 border-lime-400 shadow">
             <div
