@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./public/css/style.css" />
     <title>TODO List App | Mini Project</title>
   </head>
-  <body class="min-h-screen bg-lime-200">
+  <body class="relative min-h-screen bg-lime-100">
     <!-- Create a simple to-do list app that allows users to search, add, edit, and
     delete items. Use local storage to store the data. -->
     <header class="flex justify-center bg-lime-400 py-7">
@@ -24,7 +24,7 @@
 
     <main class="flex justify-center">
       <!-- App Container -->
-      <div class="container flex flex-col border-2 border-blue-400">
+      <div class="container flex flex-col pb-32">
         <!-- Input Container -->
         <div class="flex flex-col text-center">
           <div
@@ -51,7 +51,8 @@
         </div>
 
         <!-- ToDos Container -->
-        <div class="flex flex-col">
+        <div class="flex flex-col px-4">
+          <!-- Sample Todo -->
           <div class="my-2 flex rounded-xl border-4 border-lime-400 shadow">
             <div
               class="flex w-[85%] flex-col px-10 py-4 text-center md:w-[90%]"
@@ -76,11 +77,12 @@
               </button>
             </div>
           </div>
+          <!-- End of sample todo -->
         </div>
       </div>
     </main>
 
-    <footer class="absolute inset-x-0 bottom-0 flex justify-center bg-lime-600">
+    <footer class="absolute inset-x-0 bottom-0 flex justify-center bg-lime-500">
       <div
         class="container flex flex-col items-center justify-center gap-2 p-4 text-sm"
       >
@@ -104,6 +106,7 @@
         ></a>
       </div>
     </footer>
+
     <script src="./public/script.js"></script>
   </body>
 </html>
