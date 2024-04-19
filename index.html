@@ -47,39 +47,12 @@
 
           <span
             id="notifier"
-            class="min-h-10 min-w-3 text-sm text-lime-800 opacity-85"
+            class="min-h-10 min-w-3 text-sm text-green-600 opacity-85"
           ></span>
         </div>
 
         <!-- ToDos Container -->
-        <div class="flex flex-col p-4">
-          <!-- Sample Todo -->
-          <div class="my-2 flex rounded-xl border-4 border-lime-400 shadow">
-            <div
-              class="flex w-[85%] flex-col px-10 py-4 text-left md:w-[90%] md:text-center"
-            >
-              <p
-                class="break-words pb-2 font-medium md:text-lg md:tracking-wide"
-              >
-                This is ToDo #1
-              </p>
-              <p class="text-sm font-light tracking-tight opacity-90">
-                Saturday, May 11th
-              </p>
-            </div>
-            <div
-              class="flex w-[15%] items-center justify-center p-2 md:w-[10%]"
-            >
-              <button
-                id="delete-btn"
-                class="rounded-md border border-red-500 bg-red-200 p-1.5 text-[8px] opacity-80 transition-transform duration-100 hover:scale-110 active:contrast-200 md:text-xs"
-              >
-                ❌
-              </button>
-            </div>
-          </div>
-          <!-- End of sample todo -->
-        </div>
+        <div id="todo-container" class="flex flex-col-reverse p-4"></div>
       </div>
     </main>
 
