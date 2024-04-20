@@ -113,13 +113,13 @@ function addTodo() {
   if (todo === null) {
     notifier.classList.replace("text-green-600", "text-red-600");
     notifier.innerHTML =
-      "<span class='font-bold'>&#x292B;</span> Cant add empty ToDo!";
+      "<span class='font-bold'>&#x292B;</span> Can't add empty ToDo!";
     return null;
   }
 
   todoContainer.appendChild(todo.markup);
   notifier.classList.replace("text-red-600", "text-green-600");
-  notifier.innerHTML = "&checkmark; New Todo Added!";
+  notifier.innerHTML = "&checkmark; New ToDo Added!";
 
   function getTodoItem() {
     const content = todoField.value.trim();
@@ -146,6 +146,9 @@ function deleteTodo(id) {
       TODO_ITEMS[i].id = i;
     }
   }
+
+  notifier.classList.replace("text-green-600", "text-red-600");
+  notifier.innerHTML = "&#x292B; ToDo Deleted!";
 }
 
 function storeLocale() {
@@ -166,7 +169,6 @@ function restoreLocale() {
   if (!parsedTodos) return;
 
   for (let i = 0; i < parsedTodos.length; i++) {
-    console.log(parsedTodos);
     const newTodo = new TodoItem(
       parsedTodos[i].content,
       Date(parsedTodos[i].date)
