@@ -984,8 +984,20 @@ video {
   outline-width: 2px;
 }
 
+.outline-8 {
+  outline-width: 8px;
+}
+
 .outline-orange-400 {
   outline-color: #fb923c;
+}
+
+.outline-teal-400 {
+  outline-color: #2dd4bf;
+}
+
+.outline-teal-300 {
+  outline-color: #5eead4;
 }
 
 .transition-transform {
