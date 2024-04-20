@@ -41,7 +41,7 @@ function TodoItem(content, dateObj) {
       "flex",
       "rounded-xl",
       "border-4",
-      "border-lime-400",
+      "border-teal-400",
       "shadow"
     );
     todo.innerHTML = `            
