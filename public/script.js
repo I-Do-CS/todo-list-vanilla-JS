@@ -46,7 +46,7 @@ function TodoItem(content, dateObj) {
     );
     todo.innerHTML = `            
     <div
-    class="flex w-[85%] flex-col px-10 py-4 text-left md:w-[90%] md:text-center"
+    class="flex w-[85%] flex-col px-10 py-4 text-left md:w-[90%] "
     >
     <p id='todo-content'
     class="break-words pb-2 font-medium md:text-lg md:tracking-wide"
