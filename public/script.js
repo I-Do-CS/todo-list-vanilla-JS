@@ -4,15 +4,15 @@
 
 const TODO_ITEMS = [];
 
-function TodoItem(content, date) {
+function TodoItem(content, dateObj) {
   // Human friendly Date String
   this.sanitizeDate = function (date) {
-    date = date.toString().split(" ");
-    const weekDay = date[0];
-    const hour = date[4].split(":").slice(0, 2).join(":");
-    const month = date[1];
-    const dayOfMonth = date[2] + getOrdinal(Number(date[2]));
-    const year = date[3];
+    const dateString = date.toString().split(" ");
+    const weekDay = dateString[0];
+    const hour = dateString[4].split(":").slice(0, 2).join(":");
+    const month = dateString[1];
+    const dayOfMonth = dateString[2] + getOrdinal(Number(dateString[2]));
+    const year = dateString[3];
 
     const sanitized = `${weekDay} ${hour}, ${month} ${dayOfMonth}, ${year}`;
 
@@ -42,7 +42,7 @@ function TodoItem(content, date) {
       "rounded-xl",
       "border-4",
       "border-lime-400",
-      "shadow",
+      "shadow"
     );
     todo.innerHTML = `            
     <div
@@ -70,14 +70,15 @@ function TodoItem(content, date) {
     const dateField = todo.querySelector("#todo-date");
 
     contentField.innerText = this.content;
-    dateField.innerText = this.todoDate;
+    dateField.innerText = this.sanitizedDate;
 
     return todo;
   };
 
   this.id = TODO_ITEMS.length;
   this.content = content;
-  this.todoDate = this.sanitizeDate(date);
+  this.dateObj = dateObj;
+  this.sanitizedDate = this.sanitizeDate(this.dateObj);
   this.markup = this.generateMarkup();
 
   this.markup.querySelector("#delete-btn").addEventListener("click", (e) => {
@@ -86,6 +87,11 @@ function TodoItem(content, date) {
 
   TODO_ITEMS.push(this);
 }
+
+// Restore Locale storage on load
+this.addEventListener("load", (e) => {
+  restoreLocale();
+});
 
 // Grab All necessary elements
 const todoField = document.getElementById("todo-field");
@@ -120,7 +126,9 @@ function addTodo() {
     todoField.value = null;
     if (!content) return null;
     else {
-      return new TodoItem(content, new Date());
+      const newTodo = new TodoItem(content, new Date());
+      storeLocale();
+      return newTodo;
     }
   }
 }
@@ -130,9 +138,39 @@ function deleteTodo(id) {
   TODO_ITEMS.splice(id, 1);
   updateIds();
 
+  if (TODO_ITEMS.length === 0) localStorage.clear();
+  else storeLocale();
+
   function updateIds() {
     for (let i = 0; i < TODO_ITEMS.length; i++) {
       TODO_ITEMS[i].id = i;
     }
+  }
+}
+
+function storeLocale() {
+  // Make string-convertable array from TODO_ITEMS
+  const todoStrings = [];
+  for (let i = 0; i < TODO_ITEMS.length; i++) {
+    todoStrings.push({
+      content: TODO_ITEMS[i].content,
+      date: TODO_ITEMS[i].dateObj,
+    });
+
+    localStorage.setItem("todos", JSON.stringify(todoStrings));
+  }
+}
+
+function restoreLocale() {
+  const parsedTodos = JSON.parse(localStorage.getItem("todos"));
+  if (!parsedTodos) return;
+
+  for (let i = 0; i < parsedTodos.length; i++) {
+    console.log(parsedTodos);
+    const newTodo = new TodoItem(
+      parsedTodos[i].content,
+      Date(parsedTodos[i].date)
+    );
+    todoContainer.appendChild(newTodo.markup);
   }
 }
